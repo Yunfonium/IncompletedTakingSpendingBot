@@ -6,8 +6,8 @@ TOKEN = '1432156287:AAEEdp6rVT9JHjy0Eh6pO9PCGEmuAFyc7jU'
 bot = telebot.TeleBot(TOKEN)
 
 
-@bot.message_handler(commands=['start','help'])
-def send_welcome(message):
+@bot.message_handler(commands=['start'])
+def create_new_database(message):
     bot.reply_to(message,"Howdy, how are you doing?")
 
 @bot.message_handler(commands=['s'])

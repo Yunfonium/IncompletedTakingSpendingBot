@@ -9,8 +9,26 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 
-mycursor.execute("ATLER TABLE customers ADD COLUMN id INT AUTO_INCREMENT PRIMARY KEY")
-mycursor.execute("SHOW TABLES")
+def create_a_new_table(tablename,column):
+    sql = "CREATE TABLE "
+    tb = tablename
+    col = "(" + column +")"
+    mycursor.execute(sql,tb,col)
 
-for x in mycursor:
-    print(x)
+def drop_a_table(tablename):
+    sql = 'DROP TABLE '
+    mycursor.execute(sql,tablename)
+
+def edit_table_name(oldname,newname):
+    sql = 'RENAME TABLE ' + oldname + 'TO ' + newname
+    mycursor.execute(sql)
+
+def show_tables(tablename):
+    sql = 'SELECT' + tablename
+    mycursor.execute(sql)
+
+def insert_new_spending():
+    pass
+
+
+
