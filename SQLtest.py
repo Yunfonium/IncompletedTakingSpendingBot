@@ -1,4 +1,5 @@
 import mysql.connector
+import datetime
 
 mydb = mysql.connector.connect(
     host = 'localhost',
@@ -9,10 +10,10 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 
-def create_a_new_table(tablename,column):
+def create_a_default_table():
     sql = "CREATE TABLE "
-    tb = tablename
-    col = "(" + column +")"
+    tb = 'default '
+    col = "(DATE date, GENRE nvarchar(max),COST float)"
     mycursor.execute(sql,tb,col)
 
 def drop_a_table(tablename):
@@ -24,11 +25,14 @@ def edit_table_name(oldname,newname):
     mycursor.execute(sql)
 
 def show_tables(tablename):
-    sql = 'SELECT' + tablename
+    sql = 'SELECT * FROM ' + tablename
     mycursor.execute(sql)
 
 def insert_new_spending():
     pass
+
+def set_date(now = date.datetime.now):
+    SELECT
 
 
 
