@@ -1,0 +1,39 @@
+version: "3.7"
+
+services:
+  telegrambot:
+    build: 
+      context: ./bot
+      dockerfile: Dockerfile
+    restart: always
+    env_file:
+      - .env
+    networks: 
+      tele-mysql-net:
+    ports: 
+     - 3001:3001
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5
+    restart: always
+    env_file:
+      - .env
+    environment:
+      - MYSQL_DATABASE=${DB_database}
+      - MYSQL_PASSWORD=${DB_password}
+      - MYSQL_USER=${DB_user}
+    volumes:
+      - botdatabase:/var/lib/mysql
+      - ./sqlinit:/docekr-entrypoint-initdb.d
+    networks: 
+      tele-mysql-net:
+    ports:
+      - 8080:8080
+
+networks: 
+  tele-mysql-net:
+
+volumes:
+  botdatabase:

@@ -14,6 +14,7 @@ class User:
 
     def set_user_name(self,user_name):
         self.user_name = user_name
+        self.records = []
         return True
 
     def create_record(self,cost : list)->str:
